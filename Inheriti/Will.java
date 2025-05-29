@@ -1,5 +1,7 @@
 import java.util.Date;
+-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Will {
     private int willID;
@@ -66,11 +68,20 @@ public class Will {
         this.isActive = isActive;
     }
 
-    public void operation() {
-        // Implementation here
-    }
+    /**
+     * Validates the assignments in the will to ensure that no asset is assigned more than 100%.
+     * 
+     * @return true if all assignments are valid, false otherwise.
+     */
 
-    public void operation2() {
-        // Implementation here
+    public boolean validateAssignments() {
+        Map<Asset, Double> assetTotals = new HashMap<>();
+        for (Assignment a : distribution) {
+            assetTotals.put(a.getAsset(), assetTotals.getOrDefault(a.getAsset(), 0.0) + a.getPercentage());
+        }
+        for (Double total : assetTotals.values()) {
+            if (total > 100.0) return false;
+        }
+        return true;
     }
 }

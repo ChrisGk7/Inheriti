@@ -5,6 +5,7 @@ public class Heir extends User {
     private Date birthday;
     private String relationship;
     private String comments;
+    private boolean inheritanceAccepted; // Optional: track acceptance
 
     public String getFathersName() {
         return fathersName;
@@ -38,11 +39,17 @@ public class Heir extends User {
         this.comments = comments;
     }
 
+    public boolean isInheritanceAccepted() {
+        return inheritanceAccepted;
+    }
+
     public void acceptInheritance() {
-        // Implementation here
+        this.inheritanceAccepted = true;
+        System.out.println(getFullName() + " has accepted the inheritance.");
     }
 
     public void rejectInheritance() {
-        // Implementation here
+        this.inheritanceAccepted = false;
+        System.out.println(getFullName() + " has rejected the inheritance.");
     }
 }
