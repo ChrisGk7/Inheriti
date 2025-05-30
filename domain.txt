@@ -1,0 +1,91 @@
++-------------------+
+|      User         |
++-------------------+
+| - fullName        |
+| - afm             |
+| - email           |
+| - termsAndServices|
++-------------------+
+| +get/set...       |
++-------------------+
+          ^
+          |
++-------------------+        +-------------------+
+|      Heir         |        |    Executor       |
++-------------------+        +-------------------+
+| - fathersName     |        | - isPerformer     |
+| - birthday        |        +-------------------+
+| - relationship    |        | +get/set...       |
+| - comments        |        +-------------------+
+| - inheritanceAccepted      |
++-------------------+
+| +get/set...       |
++-------------------+
+
++-------------------+
+|    Inherited      |
++-------------------+
+| - wills: List<Will>      |
+| - assets: List<Asset>    |
+| - heirs: List<Heir>      |
++-------------------+
+| +get/set...       |
++-------------------+
+
++-------------------+
+|      Will         |
++-------------------+
+| - willID          |
+| - dateOfIssue     |
+| - dateOfExecution |
+| - inhAFM          |
+| - heirList: List<Heir>   |
+| - distribution: List<Assignment> |
+| - isActive        |
++-------------------+
+| +get/set...       |
++-------------------+
+
++-------------------+
+|   Assignment      |
++-------------------+
+| - asset: Asset    |
+| - heir: Heir      |
+| - percentage      |
++-------------------+
+| +get/set...       |
++-------------------+
+
++-------------------+
+|     Asset (abstract) |
++-------------------+
+| - propID          |
+| - dateOfIns       |
++-------------------+
+| +get/set...       |
++-------------------+
+   ^        ^        ^
+   |        |        |
++--------+ +-----------+ +--------------+
+|Vehicle | |RealEstate | |BankAccounts  |
++--------+ +-----------+ +--------------+
+| - vin  | | - atak    | | - iban       |
+| - rego | | - address | | - beneficiaries|
+| - desc | | - kaek    | | - acctType   |
++--------+ +-----------+ +--------------+
+
++-------------------+
+|   AssetManager    |
++-------------------+
+| - dbManager       |
++-------------------+
+| +getAssetsForUser()      |
+| +getRealEstateAssets()   |
+| +getVehicleAssets()      |
++-------------------+
+
++-------------------+
+|    DBManger       |
++-------------------+
+| +loadAssetsForUser()     |
++-------------------+
